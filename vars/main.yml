@@ -1,0 +1,65 @@
+---
+homebrew_cask_accept_external_apps: true
+homebrew_installed_packages:
+  - curl
+  - dcraw
+  - exiftool
+  - git
+  - imagemagick
+  - jq
+  - mono
+  - mkvtoolnix
+  - nmap
+  - node
+  - gsed
+  - pyenv
+  - rbenv
+  - coreutils
+  - sqlite
+  - telnet
+  - ufraw
+  - unison
+  - vim
+  - wget
+  - yarn
+  - zsh
+homebrew_cask_apps:
+  - iterm2
+
+dotfiles_repo: "git@github.com:enarmontas/dotfiles.git"
+dotfiles_repo_version: main
+dotfiles_repo_local_destination: "~/code/dotfiles"
+dotfiles_home: "~"
+dotfiles_files:
+  - .aliases
+  - .functions
+  - .gitconfig
+  - .gitignore
+  - .macos
+  - .plugs.vim
+  - .vimrc
+  - .zshrc
+
+zsh_profile_overwrite: false
+
+ruby_versions:
+  - 2.7.2
+  - 2.5.1
+ruby_gems:
+  - bundler
+  - rake
+  - rubocop
+  - rails
+  - jekyll
+  - sinatra
+
+python_versions:
+  - 3.8.5
+  - 3.7.8
+python_packages:
+  - virtualenv
+
+unison_profiles_directory: ~/.unison
+unison_profiles:
+  - default.prf
+  - external_to_data.prf

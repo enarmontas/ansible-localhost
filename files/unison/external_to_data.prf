@@ -1,0 +1,17 @@
+root = /Volumes/External/
+root = /Volumes/Data/
+
+force = /Volumes/External/
+
+auto = true
+batch = true
+perms = 0
+
+ignore = Name .DS_Store
+ignore = Name .DocumentRevisions-V100
+ignore = Name .TemporaryItems
+ignore = Name .Trashes
+ignore = Name .Spotlight-V100
+ignore = Name .fseventsd
+ignore = Name *.log
+ignore = Name *.tmp

@@ -1,0 +1,17 @@
+---
+- name: Check installed Python versions
+  shell: pyenv versions --bare
+  register: python_installed
+  changed_when: false
+  failed_when: false
+
+- name: Install Python
+  shell: pyenv install {{ item }}
+  with_items: "{{ python_versions }}"
+  when: item not in python_installed.stdout_lines
+
+- name: Install Python packages
+  pip:
+    name: "{{ python_packages }}"
+    state: present
+    executable: pip3

@@ -1,0 +1,12 @@
+---
+- name: Create Unison profiles directory
+  file:
+    path: "{{ unison_profiles_directory }}"
+    state: directory
+
+- name: Copy Unison profiles
+  copy:
+    src: "unison/{{ item }}"
+    dest: "{{ unison_profiles_directory }}/{{ item }}"
+    mode: u=rw,g=r,o=r
+  with_items: "{{ unison_profiles }}"

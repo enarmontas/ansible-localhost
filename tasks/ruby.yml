@@ -1,0 +1,17 @@
+---
+- name: Check installed Ruby versions
+  shell: rbenv versions --bare
+  register: ruby_installed
+  changed_when: false
+  failed_when: false
+
+- name: Install Ruby
+  shell: rbenv install {{ item }}
+  with_items: "{{ ruby_versions }}"
+  when: item not in ruby_installed.stdout_lines
+
+- name: Install Ruby gems
+  gem:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ ruby_gems }}"
