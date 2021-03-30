@@ -1,0 +1,15 @@
+---
+- include: zsh.yml
+  tags: zsh
+
+- include: vim.yml
+  tags: vim
+
+- include: ruby.yml
+  tags: ruby
+
+- include: python.yml
+  tags: python
+
+- include: unison.yml
+  tags: unison

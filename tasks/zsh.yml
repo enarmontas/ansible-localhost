@@ -1,0 +1,33 @@
+---
+- name: Install oh-my-zsh
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: ~/.oh-my-zsh
+    version: master
+
+- name: Check if zsh profile exist
+  stat:
+    path: ~/.zshrc
+  register: zsh_profile
+
+- name: Backup zsh profile
+  copy:
+    src: ~/.zshrc
+    dest: ~/.zshrc.backup
+    remote_src: yes
+  when: zsh_profile.stat.exists and zsh_profile_overwrite
+
+- name: Copy zsh config template
+  copy:
+    src: ~/.oh-my-zsh/templates/zshrc.zsh-template
+    dest: ~/.zshrc
+    remote_src: yes
+  when: |
+    not zsh_profile.stat.exists or
+    (zsh_profile.stat.exists and zsh_profile_overwrite)
+
+- name: Set default shell to zsh for current user
+  user:
+    name: "{{ ansible_env.USER }}"
+    shell: /usr/local/bin/zsh
+  become: yes
