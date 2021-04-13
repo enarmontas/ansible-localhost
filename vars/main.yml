@@ -1,20 +1,21 @@
 ---
 homebrew_cask_accept_external_apps: true
 homebrew_installed_packages:
+  - coreutils
   - curl
   - dcraw
   - exiftool
   - git
+  - gsed
+  - hadolint
   - imagemagick
   - jq
-  - mono
   - mkvtoolnix
+  - mono
   - nmap
   - node
-  - gsed
   - pyenv
   - rbenv
-  - coreutils
   - sqlite
   - telnet
   - ufraw
