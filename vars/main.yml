@@ -1,6 +1,7 @@
 ---
 homebrew_cask_accept_external_apps: true
 homebrew_installed_packages:
+  - atlantis
   - coreutils
   - curl
   - dcraw
@@ -18,6 +19,8 @@ homebrew_installed_packages:
   - rbenv
   - sqlite
   - telnet
+  - terraform
+  - terragrunt
   - ufraw
   - unison
   - vim
