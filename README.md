@@ -14,6 +14,6 @@
 
 3. Run the playbook
    ```
-   ansible-playbook setup-macos.yml --ask-become-pass
+   ansible-playbook setup.yml --ask-become-pass
    ```
    Run tasks with specific tag: `-t <tag>`

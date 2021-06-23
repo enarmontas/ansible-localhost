@@ -27,12 +27,14 @@ homebrew_installed_packages:
   - wget
   - yarn
   - zsh
-
 homebrew_cask_apps:
   - iterm2
   - virtualbox
   - vagrant
   - docker
+
+linux_installed_packages:
+  - git
 
 dotfiles_repo: "git@github.com:enarmontas/dotfiles.git"
 dotfiles_repo_version: main
@@ -71,8 +73,3 @@ python_packages:
 terraform_versions:
   - 0.15.5
   - 1.0.0
-
-unison_profiles_directory: ~/.unison
-unison_profiles:
-  - default.prf
-  - external_to_data.prf

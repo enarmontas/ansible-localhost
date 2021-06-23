@@ -1,0 +1,6 @@
+---
+- name: Install Linux packages
+  package:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ linux_installed_packages }}"
