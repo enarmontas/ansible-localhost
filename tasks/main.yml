@@ -13,3 +13,6 @@
 
 - include: golang.yml
   tags: golang
+
+- include: terraform.yml
+  tags: terraform
