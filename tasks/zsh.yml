@@ -1,4 +1,22 @@
 ---
+- name: Install ZSH for Linux
+  package:
+    name: zsh
+    state: present
+  become: true
+  when: ansible_facts['os_family'] == "RedHat" or ansible_facts['os_family'] == "Debian"
+
+- name: Install ZSH for macOS
+  homebrew:
+    name: zsh
+    state: present
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Check ZSH path
+  command: which zsh
+  changed_when: false
+  register: zsh_path
+
 - name: Install oh-my-zsh
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
@@ -29,5 +47,5 @@
 - name: Set default shell to zsh for current user
   user:
     name: "{{ ansible_env.USER }}"
-    shell: /usr/local/bin/zsh
-  become: yes
+    shell: "{{ zsh_path.stdout }}"
+  become: true

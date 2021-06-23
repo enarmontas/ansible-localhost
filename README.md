@@ -1,4 +1,6 @@
-### Usage
+# Ansible Localhost
+
+## Usage
 1. Install Ansible
 
    macOS
@@ -17,3 +19,7 @@
    ansible-playbook setup.yml --ask-become-pass
    ```
    Run tasks with specific tag: `-t <tag>`
+
+## To Do
+- https://galaxy.ansible.com/zzet/rbenv
+- https://galaxy.ansible.com/avanov/pyenv
