@@ -1,2 +1,5 @@
-- name: geerlingguy.homebrew
-- name: geerlingguy.dotfiles
+roles:
+  - name: geerlingguy.dotfiles
+
+collections:
+  - name: geerlingguy.mac
