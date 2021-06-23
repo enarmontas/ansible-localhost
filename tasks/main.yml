@@ -1,4 +1,11 @@
 ---
+- include_role:
+    name: geerlingguy.mac.homebrew
+  when: ansible_facts['os_family'] == "Darwin"
+
+- include: packages.yml
+  when: ansible_facts['os_family'] == "RedHat" or ansible_facts['os_family'] == "Debian"
+
 - include: zsh.yml
   tags: zsh
 
@@ -16,10 +23,3 @@
 
 - include: terraform.yml
   tags: terraform
-
-- include: packages.yml
-  when: ansible_facts['os_family'] == "RedHat" or ansible_facts['os_family'] == "Debian"
-
-- include_role:
-    name: geerlingguy.mac.homebrew
-  when: ansible_facts['os_family'] == "Darwin"
