@@ -35,6 +35,7 @@ dotfiles_repo_version: main
 dotfiles_repo_local_destination: "~/code/dotfiles"
 dotfiles_home: "~"
 dotfiles_files:
+  - .ssh/config
   - .aliases
   - .functions
   - .gitconfig
