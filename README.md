@@ -1,6 +1,19 @@
 ### Usage
-```
-ansible-galaxy install -r requirements.yml
-ansible-playbook setup.yml -K
-ansible-playbook setup.yml -K -t vim
-```
+1. Install Ansible
+
+   macOS
+   ```
+   brew install ansible
+   ```
+
+2. Install Ansible requirements
+
+   ```
+   ansible-galaxy install -r requirements.yml
+   ```
+
+3. Run the playbook
+   ```
+   ansible-playbook setup-macos.yml --ask-become-pass
+   ```
+   Run tasks with specific tag: `-t <tag>`
