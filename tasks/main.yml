@@ -11,3 +11,5 @@
 - include: python.yml
   tags: python
 
+- include: golang.yml
+  tags: golang

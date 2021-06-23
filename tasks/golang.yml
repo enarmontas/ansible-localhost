@@ -1,0 +1,10 @@
+---
+- name: Create Go directories
+  file:
+    path: "{{ lookup('env','HOME') }}/go/{{ item }}"
+    state: directory
+    recurse: true
+  with_items:
+    - bin
+    - src
+    - pkg
