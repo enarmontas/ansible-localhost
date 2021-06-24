@@ -11,3 +11,4 @@
 
 - name: Intall Vim plugins
   shell: vim -u ~/.plugs.vim +PlugInstall +qall
+  changed_when: false
