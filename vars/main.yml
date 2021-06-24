@@ -1,4 +1,5 @@
 ---
+# macOS packages
 homebrew_cask_accept_external_apps: true
 homebrew_installed_packages:
   - atlantis
@@ -31,9 +32,11 @@ homebrew_cask_apps:
   - vagrant
   - docker
 
+# Linux packages
 linux_installed_packages:
   - git
 
+# Dotfiles
 dotfiles_repo: "git@github.com:enarmontas/dotfiles.git"
 dotfiles_repo_version: main
 dotfiles_repo_local_destination: "~/code/dotfiles"
@@ -49,6 +52,7 @@ dotfiles_files:
   - .vimrc
   - .zshrc
 
+# ZSH
 zsh_profile_overwrite: false
 
 # Ruby
@@ -117,6 +121,7 @@ pyenv_linux_dependencies:
   - readline-devel
   - zlib-devel
 
+# Terraform
 terraform_versions:
   - 0.15.5
   - 1.0.0
