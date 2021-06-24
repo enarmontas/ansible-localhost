@@ -21,5 +21,4 @@
    Run tasks with specific tag: `-t <tag>`
 
 ## To Do
-- https://galaxy.ansible.com/zzet/rbenv
 - https://galaxy.ansible.com/avanov/pyenv
