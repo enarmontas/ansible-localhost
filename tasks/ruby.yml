@@ -1,17 +1,72 @@
 ---
+- name: Install rbenv
+  git:
+    repo: "{{ rbenv_repository }}"
+    dest: "{{ rbenv_directory }}"
+    version: "{{ rbenv_version }}"
+    accept_hostkey: yes
+    force: yes
+
+- name: Create rbenv plugins directory
+  file:
+    state: directory
+    path: "{{ rbenv_directory }}/plugins"
+
+- name: Install rbenv plugins
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ rbenv_directory }}/plugins/{{ item.name }}"
+    version: "{{ item.version }}"
+    accept_hostkey: yes
+    force: yes
+  loop: "{{ rbenv_plugins }}"
+
+- name: Add rbenv initialization to system profile for RedHat
+  template:
+    src: rbenv-profile.sh.j2
+    dest: /etc/profile.d/rbenv.sh
+  become: yes
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Add rbenv initialization to system profile for macOS
+  blockinfile:
+    block: "{{ lookup('template', 'rbenv-profile.sh.j2') }}"
+    dest: /etc/profile
+  become: yes
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Set default Ruby gems
+  template:
+    src: rbenv-default-gems.j2
+    dest: "{{ rbenv_directory }}/default-gems"
+
+- name: Install rbenv dependencies for RedHat
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ rbenv_linux_dependencies }}"
+  when: ansible_facts['os_family'] == "RedHat"
+
 - name: Check installed Ruby versions
   shell: rbenv versions --bare
   register: ruby_installed
   changed_when: false
   failed_when: false
 
-- name: Install Ruby
-  shell: rbenv install {{ item }}
-  with_items: "{{ ruby_versions }}"
+- name: Install Ruby versions
+  shell: "{{ rbenv_directory }}/bin/rbenv install --skip-existing {{ item }}"
+  args:
+    creates: "~/.rbenv/versions/{{ item }}"
+  with_items: "{{ rbenv_rubies }}"
   when: item not in ruby_installed.stdout_lines
 
-- name: Install Ruby gems
-  gem:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ ruby_gems }}"
+- name: Check if default Ruby version is {{ rbenv_default_ruby }}
+  shell: "{{ rbenv_directory }}/bin/rbenv version | cut -d ' ' -f 1 | grep -Fx '{{ rbenv_default_ruby }}'"
+  register: rbenv_default_version
+  changed_when: false
+  failed_when: false
+
+- name: Set default Ruby version to {{ rbenv_default_ruby }}
+  shell: "{{ rbenv_directory }}/bin/rbenv global {{ rbenv_default_ruby }} && {{ rbenv_directory }}/bin/rbenv rehash"
+  when: rbenv_default_version.rc != 0 and rbenv_default_version.stdout != rbenv_default_ruby

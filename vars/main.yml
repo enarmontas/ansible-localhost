@@ -16,7 +16,6 @@ homebrew_installed_packages:
   - nmap
   - node
   - pyenv
-  - rbenv
   - sqlite
   - telnet
   - terragrunt
@@ -53,16 +52,47 @@ dotfiles_files:
 
 zsh_profile_overwrite: false
 
-ruby_versions:
+# Ruby
+rbenv_repository: https://github.com/rbenv/rbenv.git
+rbenv_directory: ~/.rbenv
+rbenv_version: master
+rbenv_rubies:
+  - 3.0.1
   - 2.7.2
   - 2.5.1
-ruby_gems:
+rbenv_default_ruby: 3.0.1
+rbenv_default_gems:
   - bundler
+  - jekyll
+  - rails
   - rake
   - rubocop
-  - rails
-  - jekyll
   - sinatra
+rbenv_plugins:
+  - name: rbenv-vars
+    repo: https://github.com/rbenv/rbenv-vars.git
+    version: master
+  - name: ruby-build
+    repo: https://github.com/rbenv/ruby-build.git
+    version: master
+  - name: rbenv-default-gems
+    repo: https://github.com/rbenv/rbenv-default-gems.git
+    version: master
+  - name: rbenv-installer
+    repo: https://github.com/rbenv/rbenv-installer.git
+    version: main
+  - name: rbenv-update
+    repo: https://github.com/rkh/rbenv-update.git
+    version: master
+  - name: rbenv-use
+    repo: https://github.com/rkh/rbenv-use.git
+    version: master
+rbenv_linux_dependencies:
+  - libffi-devel
+  - libyaml-devel
+  - openssl-devel
+  - readline-devel
+  - zlib-devel
 
 python_versions:
   - 3.8.5
