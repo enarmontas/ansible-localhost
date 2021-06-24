@@ -1,17 +1,78 @@
 ---
+- name: Install pyenv
+  git:
+    repo: "{{ pyenv_repository }}"
+    dest: "{{ pyenv_directory }}"
+    version: "{{ pyenv_version }}"
+    accept_hostkey: yes
+    force: yes
+
+- name: Create pyenv plugins directory
+  file:
+    state: directory
+    path: "{{ pyenv_directory }}/plugins"
+
+- name: Install pyenv plugins
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ pyenv_directory }}/plugins/{{ item.name }}"
+    version: "{{ item.version }}"
+    accept_hostkey: yes
+    force: yes
+  loop: "{{ pyenv_plugins }}"
+
+- name: Add pyenv initialization to system profile for RedHat
+  template:
+    src: pyenv-profile.sh.j2
+    dest: /etc/profile.d/pyenv.sh
+  become: yes
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Add pyenv initialization to system profile for macOS
+  blockinfile:
+    block: "{{ lookup('template', 'pyenv-profile.sh.j2') }}"
+    dest: /etc/profile
+  become: yes
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Set default Python packages
+  template:
+    src: pyenv-default-packages.j2
+    dest: "{{ pyenv_directory }}/default-packages"
+
+- name: Install pyenv dependencies for RedHat
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ pyenv_linux_dependencies }}"
+  when: ansible_facts['os_family'] == "RedHat"
+
 - name: Check installed Python versions
-  shell: pyenv versions --bare
+  shell: "{{ pyenv_directory }}/bin/pyenv versions --bare"
   register: python_installed
   changed_when: false
   failed_when: false
 
-- name: Install Python
-  shell: pyenv install {{ item }}
-  with_items: "{{ python_versions }}"
+- name: Install Python versions
+  shell: "{{ pyenv_directory }}/bin/pyenv install --skip-existing {{ item }}"
+  args:
+    creates: "~/.pyenv/versions/{{ item }}"
+  with_items: "{{ pyenv_pythons }}"
   when: item not in python_installed.stdout_lines
+
+- name: Check if default Python version is {{ pyenv_default_python }}
+  shell: "{{ pyenv_directory }}/bin/pyenv version | cut -d ' ' -f 1 | grep -Fx '{{ pyenv_default_python }}'"
+  register: pyenv_default_version
+  changed_when: false
+  failed_when: false
+
+- name: Set default Python version to {{ pyenv_default_python }}
+  shell: "{{ pyenv_directory }}/bin/pyenv global {{ pyenv_default_python }} && {{ pyenv_directory }}/bin/pyenv rehash"
+  when: pyenv_default_version.rc != 0 and pyenv_default_version.stdout != pyenv_default_python
 
 - name: Install Python packages
   pip:
-    name: "{{ python_packages }}"
+    name: "{{ pyenv_default_packages }}"
     state: present
     executable: pip3

@@ -21,4 +21,5 @@
    Run tasks with specific tag: `-t <tag>`
 
 ## To Do
-- https://galaxy.ansible.com/avanov/pyenv
+- Homebrew dependencies for `rbenv` and `pyenv`
+- Remove old `rbenv` and `pyenv` versions
