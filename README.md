@@ -22,4 +22,3 @@
 
 ## To Do
 - Remove old `rbenv` and `pyenv` versions
-- Move hardcoded values to vars file
