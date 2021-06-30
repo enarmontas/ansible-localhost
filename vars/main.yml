@@ -1,28 +1,24 @@
 ---
 # macOS packages
+homebrew_build_dependencies:
+  - openssl
 homebrew_cask_accept_external_apps: true
 homebrew_installed_packages:
   - coreutils
   - curl
-  - dcraw
   - exiftool
   - git
-  - gsed
   - hadolint
   - imagemagick
   - jq
-  - mkvtoolnix
-  - mono
   - nmap
   - node
   - sqlite
   - telnet
-  - ufraw
   - unison
   - vim
   - wget
   - yarn
-  - zsh
 homebrew_cask_apps:
   - iterm2
   - virtualbox
