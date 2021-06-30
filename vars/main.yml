@@ -2,7 +2,6 @@
 # macOS packages
 homebrew_cask_accept_external_apps: true
 homebrew_installed_packages:
-  - atlantis
   - coreutils
   - curl
   - dcraw
@@ -18,8 +17,6 @@ homebrew_installed_packages:
   - node
   - sqlite
   - telnet
-  - terragrunt
-  - tfenv
   - ufraw
   - unison
   - vim
@@ -124,6 +121,13 @@ goenv_gos:
 goenv_default_go: 1.16.5
 
 # Terraform
-terraform_versions:
+terraform_additional_packages:
+  - terragrunt
+  - atlantis
+tfenv_repository: https://github.com/tfutils/tfenv.git
+tfenv_directory: ~/.tfenv
+tfenv_version: master
+tfenv_terraforms:
   - 0.15.5
   - 1.0.0
+tfenv_default_terraform: 1.0.0
