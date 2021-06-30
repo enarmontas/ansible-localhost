@@ -115,6 +115,14 @@ pyenv_plugins:
     repo: https://github.com/jawshooah/pyenv-default-packages.git
     version: master
 
+# Go
+goenv_repository: https://github.com/syndbg/goenv.git
+goenv_directory: ~/.goenv
+goenv_version: master
+goenv_gos:
+  - 1.16.5
+goenv_default_go: 1.16.5
+
 # Terraform
 terraform_versions:
   - 0.15.5
