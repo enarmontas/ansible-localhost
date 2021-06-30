@@ -31,7 +31,9 @@
 - name: Add rbenv initialization to system profile for macOS
   blockinfile:
     block: "{{ lookup('template', 'rbenv-profile.sh.j2') }}"
-    dest: /etc/profile
+    dest: /etc/zprofile
+    marker_begin: BEGIN RBENV
+    marker_end: END RBENV
   become: yes
   when: ansible_facts['os_family'] == "Darwin"
 
