@@ -21,8 +21,5 @@
    Run tasks with specific tag: `-t <tag>`
 
 ## To Do
-- Homebrew dependencies for `rbenv` and `pyenv`
 - Remove old `rbenv` and `pyenv` versions
-- Terraform
-- Golang
 - Move hardcoded values to vars file
