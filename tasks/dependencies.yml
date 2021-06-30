@@ -1,0 +1,15 @@
+---
+- name: Install build dependencies for Linux
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ linux_build_dependencies }}"
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Install build dependencies for macOS
+  homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ homebrew_build_dependencies }}"
+  when: ansible_facts['os_family'] == "Darwin"

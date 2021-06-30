@@ -35,6 +35,12 @@ homebrew_cask_apps:
 # Linux packages
 linux_installed_packages:
   - git
+linux_build_dependencies:
+  - libffi-devel
+  - libyaml-devel
+  - openssl-devel
+  - readline-devel
+  - zlib-devel
 
 # Dotfiles
 dotfiles_repo: "git@github.com:enarmontas/dotfiles.git"
@@ -90,12 +96,6 @@ rbenv_plugins:
   - name: rbenv-use
     repo: https://github.com/rkh/rbenv-use.git
     version: master
-rbenv_linux_dependencies:
-  - libffi-devel
-  - libyaml-devel
-  - openssl-devel
-  - readline-devel
-  - zlib-devel
 
 # Python
 pyenv_repository: https://github.com/pyenv/pyenv.git
@@ -114,12 +114,6 @@ pyenv_plugins:
   - name: pyenv-default-packages
     repo: https://github.com/jawshooah/pyenv-default-packages.git
     version: master
-pyenv_linux_dependencies:
-  - libffi-devel
-  - libyaml-devel
-  - openssl-devel
-  - readline-devel
-  - zlib-devel
 
 # Terraform
 terraform_versions:
