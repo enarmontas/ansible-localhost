@@ -1,11 +1,70 @@
 ---
+- name: Install tfenv
+  git:
+    repo: "{{ tfenv_repository }}"
+    dest: "{{ tfenv_directory }}"
+    version: "{{ tfenv_version }}"
+    accept_hostkey: yes
+    force: yes
+
+- name: Add tfenv initialization to system profile for Linux
+  template:
+    src: tfenv-profile.sh.j2
+    dest: /etc/profile.d/tfenv.sh
+  become: yes
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Add tfenv initialization to system profile for macOS
+  blockinfile:
+    block: "{{ lookup('template', 'tfenv-profile.sh.j2') }}"
+    dest: /etc/zprofile
+    marker_begin: BEGIN TFENV
+    marker_end: END TFENV
+  become: yes
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Install tfenv dependencies for Linux
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ tfenv_linux_dependencies }}"
+  when: ansible_facts['os_family'] == "RedHat"
+
 - name: Check installed Terraform versions
-  shell: tfenv list
+  shell: "{{ tfenv_directory }}/bin/tfenv versions --bare"
   register: terraform_installed
   changed_when: false
   failed_when: false
 
-- name: Install Terraform
-  shell: tfenv install {{ item }}
-  with_items: "{{ terraform_versions }}"
+- name: Install Terraform versions
+  shell: "{{ tfenv_directory }}/bin/tfenv install {{ item }}"
+  args:
+    creates: "~/.tfenv/versions/{{ item }}"
+  with_items: "{{ tfenv_terraforms }}"
   when: item not in terraform_installed.stdout_lines
+
+- name: Check if default Terraform version is {{ tfenv_default_terraform }}
+  shell: "{{ tfenv_directory }}/bin/tfenv version-name | grep -Fx '{{ tfenv_default_terraform }}'"
+  register: tfenv_default_version
+  changed_when: false
+  failed_when: false
+
+- name: Set default Terraform version to {{ tfenv_default_terraform }}
+  shell: "{{ tfenv_directory }}/bin/tfenv use {{ tfenv_default_terraform }}"
+  when: tfenv_default_version.rc != 0 and tfenv_default_version.stdout != tfenv_default_terraform
+
+- name: Install additional Terraform packages for Linux
+  package:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ terraform_additional_packages }}"
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Install additional Terraform packages for macOS
+  homebrew:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ terraform_additional_packages }}"
+  when: ansible_facts['os_family'] == "Darwin"
