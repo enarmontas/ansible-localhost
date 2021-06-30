@@ -19,26 +19,26 @@
 
 - name: Install oh-my-zsh
   git:
-    repo: https://github.com/ohmyzsh/ohmyzsh.git
-    dest: ~/.oh-my-zsh
+    repo: "{{ zsh_ohmyzsh_repo }}"
+    dest: "{{ zsh_ohmyzsh_directory }}"
     version: master
 
 - name: Check if zsh profile exist
   stat:
-    path: ~/.zshrc
+    path: "{{ zsh_profile_file }}"
   register: zsh_profile
 
 - name: Backup zsh profile
   copy:
-    src: ~/.zshrc
-    dest: ~/.zshrc.backup
+    src: "{{ zsh_profile_file }}"
+    dest: "{{ zsh_profile_file }}.backup"
     remote_src: yes
   when: zsh_profile.stat.exists and zsh_profile_overwrite
 
 - name: Copy zsh config template
   copy:
-    src: ~/.oh-my-zsh/templates/zshrc.zsh-template
-    dest: ~/.zshrc
+    src: "{{ zsh_ohmyzsh_directory }}/templates/zshrc.zsh-template"
+    dest: "{{ zsh_profile_file }}"
     remote_src: yes
   when: |
     not zsh_profile.stat.exists or
