@@ -40,14 +40,6 @@
     src: pyenv-default-packages.j2
     dest: "{{ pyenv_directory }}/default-packages"
 
-- name: Install pyenv dependencies for RedHat
-  package:
-    name: "{{ item }}"
-    state: present
-  become: true
-  loop: "{{ pyenv_linux_dependencies }}"
-  when: ansible_facts['os_family'] == "RedHat"
-
 - name: Check installed Python versions
   shell: "{{ pyenv_directory }}/bin/pyenv versions --bare"
   register: python_installed
@@ -70,9 +62,3 @@
 - name: Set default Python version to {{ pyenv_default_python }}
   shell: "{{ pyenv_directory }}/bin/pyenv global {{ pyenv_default_python }} && {{ pyenv_directory }}/bin/pyenv rehash"
   when: pyenv_default_version.rc != 0 and pyenv_default_version.stdout != pyenv_default_python
-
-- name: Install Python packages
-  pip:
-    name: "{{ pyenv_default_packages }}"
-    state: present
-    executable: pip3

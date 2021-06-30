@@ -12,6 +12,9 @@
 - include: vim.yml
   tags: vim
 
+- include: dependencies.yml
+  tags: ruby, python, golang
+
 - include: ruby.yml
   tags: ruby
 
