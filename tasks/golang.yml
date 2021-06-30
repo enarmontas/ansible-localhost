@@ -8,3 +8,50 @@
     - bin
     - src
     - pkg
+
+- name: Install goenv
+  git:
+    repo: "{{ goenv_repository }}"
+    dest: "{{ goenv_directory }}"
+    version: "{{ goenv_version }}"
+    accept_hostkey: yes
+    force: yes
+
+- name: Add goenv initialization to system profile for Linux
+  template:
+    src: goenv-profile.sh.j2
+    dest: /etc/profile.d/goenv.sh
+  become: yes
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Add goenv initialization to system profile for macOS
+  blockinfile:
+    block: "{{ lookup('template', 'goenv-profile.sh.j2') }}"
+    dest: /etc/zprofile
+    marker_begin: BEGIN GOENV
+    marker_end: END GOENV
+  become: yes
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Check installed Go versions
+  shell: "{{ goenv_directory }}/bin/goenv versions --bare"
+  register: go_installed
+  changed_when: false
+  failed_when: false
+
+- name: Install Go versions
+  shell: "{{ goenv_directory }}/bin/goenv install --skip-existing {{ item }}"
+  args:
+    creates: "~/.goenv/versions/{{ item }}"
+  with_items: "{{ goenv_gos }}"
+  when: item not in go_installed.stdout_lines
+
+- name: Check if default Go version is {{ goenv_default_go }}
+  shell: "{{ goenv_directory }}/bin/goenv version | cut -d ' ' -f 1 | grep -Fx '{{ goenv_default_go }}'"
+  register: goenv_default_version
+  changed_when: false
+  failed_when: false
+
+- name: Set default Go version to {{ goenv_default_go }}
+  shell: "{{ goenv_directory }}/bin/goenv global {{ goenv_default_go }} && {{ goenv_directory }}/bin/goenv rehash"
+  when: goenv_default_version.rc != 0 and goenv_default_version.stdout != goenv_default_go
