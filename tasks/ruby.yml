@@ -21,7 +21,7 @@
     force: yes
   loop: "{{ rbenv_plugins }}"
 
-- name: Add rbenv initialization to system profile for RedHat
+- name: Add rbenv initialization to system profile for Linux
   template:
     src: rbenv-profile.sh.j2
     dest: /etc/profile.d/rbenv.sh

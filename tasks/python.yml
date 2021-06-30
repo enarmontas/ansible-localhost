@@ -21,7 +21,7 @@
     force: yes
   loop: "{{ pyenv_plugins }}"
 
-- name: Add pyenv initialization to system profile for RedHat
+- name: Add pyenv initialization to system profile for Linux
   template:
     src: pyenv-profile.sh.j2
     dest: /etc/profile.d/pyenv.sh
