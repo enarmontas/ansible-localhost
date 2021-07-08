@@ -24,7 +24,7 @@ homebrew_cask_apps:
 
 # Linux packages
 linux_installed_packages:
-  - git
+  - git-all
 linux_build_dependencies:
   - libffi-devel
   - libyaml-devel
