@@ -21,21 +21,13 @@
     force: yes
   loop: "{{ pyenv_plugins }}"
 
-- name: Add pyenv initialization to system profile for Linux
-  template:
-    src: pyenv-profile.sh.j2
-    dest: /etc/profile.d/pyenv.sh
-  become: yes
-  when: ansible_facts['os_family'] == "RedHat"
-
-- name: Add pyenv initialization to system profile for macOS
+- name: Add pyenv initialization to ZSH system profile
   blockinfile:
     block: "{{ lookup('template', 'pyenv-profile.sh.j2') }}"
     dest: /etc/zprofile
     marker_begin: BEGIN PYENV
     marker_end: END PYENV
   become: yes
-  when: ansible_facts['os_family'] == "Darwin"
 
 - name: Set default Python packages
   template:

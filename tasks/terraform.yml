@@ -7,29 +7,13 @@
     accept_hostkey: yes
     force: yes
 
-- name: Add tfenv initialization to system profile for Linux
-  template:
-    src: tfenv-profile.sh.j2
-    dest: /etc/profile.d/tfenv.sh
-  become: yes
-  when: ansible_facts['os_family'] == "RedHat"
-
-- name: Add tfenv initialization to system profile for macOS
+- name: Add tfenv initialization to ZSH system profile
   blockinfile:
     block: "{{ lookup('template', 'tfenv-profile.sh.j2') }}"
     dest: /etc/zprofile
     marker_begin: BEGIN TFENV
     marker_end: END TFENV
   become: yes
-  when: ansible_facts['os_family'] == "Darwin"
-
-- name: Install tfenv dependencies for Linux
-  package:
-    name: "{{ item }}"
-    state: present
-  become: true
-  loop: "{{ tfenv_linux_dependencies }}"
-  when: ansible_facts['os_family'] == "RedHat"
 
 - name: Check installed Terraform versions
   shell: "{{ tfenv_directory }}/bin/tfenv versions --bare"
