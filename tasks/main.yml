@@ -26,3 +26,6 @@
 
 - include: terraform.yml
   tags: terraform
+
+- include: docker.yml
+  tags: docker
