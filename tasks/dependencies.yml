@@ -7,6 +7,14 @@
   loop: "{{ linux_build_dependencies }}"
   when: ansible_facts['os_family'] == "RedHat"
 
+- name: Install build dependencies for Fedora
+  dnf:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ fedora_build_dependencies }}"
+  when: ansible_facts['distribution'] == "Fedora"
+
 - name: Install build dependencies for macOS
   homebrew:
     name: "{{ item }}"

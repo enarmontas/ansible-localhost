@@ -8,7 +8,6 @@ homebrew_installed_packages:
   - curl
   - exiftool
   - git
-  - hadolint
   - imagemagick
   - jq
   - nmap
@@ -23,7 +22,6 @@ homebrew_cask_apps:
   - iterm2
   - virtualbox
   - vagrant
-  - docker
 
 # Linux packages
 linux_installed_packages:
@@ -34,6 +32,8 @@ linux_build_dependencies:
   - openssl-devel
   - readline-devel
   - zlib-devel
+fedora_build_dependencies:
+  - dnf-plugins-core
 
 # Dotfiles
 dotfiles_repo: "git@github.com:enarmontas/dotfiles.git"
