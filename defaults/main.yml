@@ -21,7 +21,6 @@ homebrew_installed_packages:
 homebrew_cask_apps:
   - iterm2
   - virtualbox
-  - vagrant
 
 # Linux packages
 linux_installed_packages:

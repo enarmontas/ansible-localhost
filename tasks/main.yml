@@ -27,5 +27,8 @@
 - include: terraform.yml
   tags: terraform
 
+- include: vagrant.yml
+  tags: vagrant
+
 - include: docker.yml
   tags: docker
