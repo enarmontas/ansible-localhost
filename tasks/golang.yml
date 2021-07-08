@@ -17,21 +17,13 @@
     accept_hostkey: yes
     force: yes
 
-- name: Add goenv initialization to system profile for Linux
-  template:
-    src: goenv-profile.sh.j2
-    dest: /etc/profile.d/goenv.sh
-  become: yes
-  when: ansible_facts['os_family'] == "RedHat"
-
-- name: Add goenv initialization to system profile for macOS
+- name: Add goenv initialization to ZSH system profile
   blockinfile:
     block: "{{ lookup('template', 'goenv-profile.sh.j2') }}"
     dest: /etc/zprofile
     marker_begin: BEGIN GOENV
     marker_end: END GOENV
   become: yes
-  when: ansible_facts['os_family'] == "Darwin"
 
 - name: Check installed Go versions
   shell: "{{ goenv_directory }}/bin/goenv versions --bare"

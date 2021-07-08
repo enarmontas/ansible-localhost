@@ -21,21 +21,13 @@
     force: yes
   loop: "{{ rbenv_plugins }}"
 
-- name: Add rbenv initialization to system profile for Linux
-  template:
-    src: rbenv-profile.sh.j2
-    dest: /etc/profile.d/rbenv.sh
-  become: yes
-  when: ansible_facts['os_family'] == "RedHat"
-
-- name: Add rbenv initialization to system profile for macOS
+- name: Add rbenv initialization to ZSH system profile
   blockinfile:
     block: "{{ lookup('template', 'rbenv-profile.sh.j2') }}"
     dest: /etc/zprofile
     marker_begin: BEGIN RBENV
     marker_end: END RBENV
   become: yes
-  when: ansible_facts['os_family'] == "Darwin"
 
 - name: Set default Ruby gems
   template:
