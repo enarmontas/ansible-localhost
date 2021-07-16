@@ -38,17 +38,9 @@
   shell: "{{ tfenv_directory }}/bin/tfenv use {{ tfenv_default_terraform }}"
   when: tfenv_default_version.rc != 0 and tfenv_default_version.stdout != tfenv_default_terraform
 
-- name: Install additional Terraform packages for Linux
-  package:
-    name: "{{ item }}"
-    state: present
-  become: true
-  loop: "{{ terraform_additional_packages }}"
-  when: ansible_facts['os_family'] == "RedHat"
-
-- name: Install additional Terraform packages for macOS
+- name: Install additional Terraform packages
   homebrew:
     name: "{{ item }}"
     state: present
-  loop: "{{ terraform_additional_packages }}"
-  when: ansible_facts['os_family'] == "Darwin"
+  become: true
+  loop: "{{ terraform_homebrew_packages }}"
