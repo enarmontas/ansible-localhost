@@ -1,7 +1,6 @@
 ---
-- include_role:
-    name: geerlingguy.mac.homebrew
-  when: ansible_facts['os_family'] == "Darwin"
+- include: homebrew.yml
+  tags: homebrew, brew
 
 - include: packages.yml
   when: ansible_facts['os_family'] == "RedHat"
@@ -13,7 +12,7 @@
   tags: vim
 
 - include: dependencies.yml
-  tags: ruby, python, golang
+  tags: ruby, python, golang, terraform, vagrant, docker
 
 - include: ruby.yml
   tags: ruby
