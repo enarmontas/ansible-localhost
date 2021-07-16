@@ -108,6 +108,8 @@ pyenv_default_python: 3.9.5
 pyenv_default_packages:
   - pytest
   - virtualenv
+  - docker
+  - boto3
 pyenv_plugins:
   - name: pyenv-virtualenv
     repo: https://github.com/pyenv/pyenv-virtualenv.git
