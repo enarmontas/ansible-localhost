@@ -1,0 +1,47 @@
+---
+- name: Install Homebrew for macOS
+  include_role:
+    name: geerlingguy.mac.homebrew
+  when: ansible_facts['os_family'] == "Darwin"
+
+- block:
+  - name: Check if Homebrew is installed
+    shell: "which brew"
+    register: which_brew
+    ignore_errors: true
+
+  - name: Create temporary Homebrew directory
+    file:
+      state: directory
+      path: /tmp/homebrew
+    register: homebrew_temp_dir
+    when: which_brew.rc != 0
+
+  - name: Download Homebrew installation script
+    get_url:
+      url: https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+      dest: "{{ homebrew_temp_dir.path }}/install.sh"
+      mode: 0755
+    when: which_brew.rc != 0
+
+  - name: Install Homebrew
+    command: sh -c "{{ homebrew_temp_dir.path }}/install.sh"
+    register: install_result
+    when: which_brew.rc != 0
+
+  - name: Delete temporary Homebrew directory
+    file:
+      state: absent
+      path: /tmp/homebrew
+    changed_when: false
+    when: homebrew_temp_dir is changed
+
+  - name: Add Homebrew initialization to ZSH system profile
+    blockinfile:
+      block: |
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      dest: /etc/zprofile
+      marker_begin: BEGIN HOMEBREW
+      marker_end: END HOMEBREW
+    become: yes
+  when: ansible_facts['distribution'] == "Fedora"
