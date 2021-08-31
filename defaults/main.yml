@@ -26,10 +26,16 @@ homebrew_cask_apps:
 linux_installed_packages:
   - git-all
 linux_build_dependencies:
+  - cmake
+  - gcc
+  - gcc-c++
+  - libconfig-devel
+  - libevdev-devel
   - libffi-devel
   - libyaml-devel
   - openssl-devel
   - readline-devel
+  - systemd-devel
   - zlib-devel
 fedora_build_dependencies:
   - dnf-plugins-core
