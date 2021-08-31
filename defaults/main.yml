@@ -133,9 +133,6 @@ goenv_gos:
 goenv_default_go: 1.16.5
 
 # Terraform
-terraform_homebrew_packages:
-  - terragrunt
-  - atlantis
 tfenv_repository: https://github.com/tfutils/tfenv.git
 tfenv_directory: ~/.tfenv
 tfenv_version: master
