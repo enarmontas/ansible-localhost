@@ -37,10 +37,3 @@
 - name: Set default Terraform version to {{ tfenv_default_terraform }}
   shell: "{{ tfenv_directory }}/bin/tfenv use {{ tfenv_default_terraform }}"
   when: tfenv_default_version.rc != 0 and tfenv_default_version.stdout != tfenv_default_terraform
-
-- name: Install additional Terraform packages
-  homebrew:
-    name: "{{ item }}"
-    state: present
-  become: true
-  loop: "{{ terraform_homebrew_packages }}"
