@@ -1,0 +1,8 @@
+---
+- name: Download custom binaries
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.path | default('$HOME/bin') }}/{{ item.name }}"
+    mode: "{{ item.mode | default('u=rwx,g=r,o=r') }}"
+    checksum: "{{ item.checksum | default(omit) }}"
+  with_items: "{{ custom_binaries }}"
