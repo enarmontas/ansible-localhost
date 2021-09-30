@@ -52,6 +52,7 @@ dotfiles_repo_version: main
 dotfiles_repo_local_destination: "~/code/dotfiles"
 dotfiles_home: "~"
 dotfiles_files:
+  - .atom/config.cson
   - .ssh/config
   - .aliases
   - .functions
@@ -146,3 +147,14 @@ tfenv_terraforms:
   - 0.15.5
   - 1.0.0
 tfenv_default_terraform: 1.0.0
+
+# Atom
+atom_version: 1.58.0
+atom_packages:
+  - atom-terragrunt-hclfmt
+  - language-jenkinsfile
+  - language-terraform
+  - linter-jenkins
+  - pretty-json
+  - sort-lines
+  - terminus

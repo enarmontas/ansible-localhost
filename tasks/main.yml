@@ -34,3 +34,6 @@
 
 - include: docker.yml
   tags: docker
+
+- include: atom.yml
+  tags: atom
