@@ -37,4 +37,6 @@ Here's what it does:
    Run tasks with specific tag: `-t <tag>`
 
 ## To Do
-- Remove old `rbenv` and `pyenv` versions
+- Remove old `rbenv`, `pyenv`, `tfenv` and `goenv` versions
+- Install Atom for macOS
+- Cofigure Terminus with Ansible
