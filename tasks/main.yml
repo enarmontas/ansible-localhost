@@ -6,7 +6,7 @@
   when: ansible_facts['os_family'] == "RedHat"
 
 - include: binaries.yml
-  tags: binaries
+  tags: binaries, binary
 
 - include: zsh.yml
   tags: zsh
