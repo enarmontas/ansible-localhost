@@ -44,11 +44,9 @@ fedora_build_dependencies:
 custom_binaries:
   - name: terragrunt
     url: https://github.com/gruntwork-io/terragrunt/releases/download/v0.31.8/terragrunt_linux_amd64
-    checksum: sha256:d94ced8483090cfcd9661a27c4b8b0c52430bdc2a91529e1527ff9b36f35993e
     type: binary
   - name: terraform-docs
     url: https://github.com/terraform-docs/terraform-docs/releases/download/v0.15.0/terraform-docs-v0.15.0-linux-amd64.tar.gz
-    checksum: sha256:e0b399d9dc2eb97853a7e12f1ae678e7160cae4c811646ce70169a8d611f6cf9
     type: archive
 
 # Dotfiles
