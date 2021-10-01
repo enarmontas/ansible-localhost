@@ -12,16 +12,10 @@ Here's what it does:
 ## Usage
 1. Fork this repository and modify to match your desired configuration.
 
-1. Install Ansible
+1. Install Ansible using Python package manager
 
-   macOS
    ```
-   $ brew install ansible
-   ```
-
-   Fedora
-   ```
-   $ sudo dnf install ansible
+   $ pip3 install ansible
    ```
 
 2. Install Ansible requirements
