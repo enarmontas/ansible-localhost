@@ -6,3 +6,14 @@
     mode: "{{ item.mode | default('u=rwx,g=r,o=r') }}"
     checksum: "{{ item.checksum | default(omit) }}"
   with_items: "{{ custom_binaries }}"
+  when: item.type == "binary"
+
+- name: Unarchive custom binary archives
+  unarchive:
+    src: "{{ item.url }}"
+    dest: "{{ item.path | default('$HOME/bin') }}/"
+    creates: "{{ item.path | default('$HOME/bin') }}/{{ item.name }}"
+    include: ["{{ item.name }}"]
+    remote_src: yes
+  with_items: "{{ custom_binaries }}"
+  when: item.type == "archive"
