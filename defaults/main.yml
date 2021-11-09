@@ -48,6 +48,9 @@ custom_binaries:
   - name: terraform-docs
     url: https://github.com/terraform-docs/terraform-docs/releases/download/v0.16.0/terraform-docs-v0.16.0-linux-amd64.tar.gz
     type: archive
+  - name: vault
+    url: https://releases.hashicorp.com/vault/1.6.2/vault_1.6.2_linux_amd64.zip
+    type: archive
 
 # Dotfiles
 dotfiles_repo: "git@github.com:enarmontas/dotfiles.git"
