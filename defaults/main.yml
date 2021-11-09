@@ -51,6 +51,9 @@ custom_binaries:
   - name: vault
     url: https://releases.hashicorp.com/vault/1.6.2/vault_1.6.2_linux_amd64.zip
     type: archive
+  - name: hclq
+    url: https://github.com/mattolenik/hclq/releases/download/0.5.3/hclq-linux-amd64
+    type: binary
 
 # Dotfiles
 dotfiles_repo: "git@github.com:enarmontas/dotfiles.git"
