@@ -1,0 +1,9 @@
+---
+- name: Configure cron job to turn on Lenovo keyboard backlight at boot
+  cron:
+    name: "Keyboard backlight at boot"
+    job: "echo 2 > /sys/class/leds/tpacpi::kbd_backlight/brightness"
+    special_time: reboot
+    user: root
+  become: true
+  when: ansible_system_vendor == 'LENOVO'

@@ -37,3 +37,6 @@
 
 - include: atom.yml
   tags: atom
+
+- include: cron.yml
+  tags: cron
