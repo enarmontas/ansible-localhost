@@ -60,6 +60,9 @@ custom_binaries:
   - name: tflint
     url: https://github.com/terraform-linters/tflint/releases/download/v0.33.1/tflint_linux_amd64.zip
     type: archive
+  - name: atlantis
+    url: https://github.com/runatlantis/atlantis/releases/download/v0.18.1/atlantis_linux_amd64.zip
+    type: archive
 
 # Dotfiles
 dotfiles_repo: "git@github.com:enarmontas/dotfiles.git"
