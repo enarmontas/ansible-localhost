@@ -35,8 +35,8 @@
 - include: docker.yml
   tags: docker
 
-- include: atom.yml
-  tags: atom
+- include: vscode.yml
+  tags: vscode
 
 - include: cron.yml
   tags: cron
