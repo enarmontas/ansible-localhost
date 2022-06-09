@@ -43,7 +43,7 @@ fedora_build_dependencies:
 # Custom binaries
 custom_binaries:
   - name: terragrunt
-    url: https://github.com/gruntwork-io/terragrunt/releases/download/v0.36.6/terragrunt_linux_amd64
+    url: https://github.com/gruntwork-io/terragrunt/releases/download/v0.37.2/terragrunt_linux_amd64
     type: binary
   - name: terraform-docs
     url: https://github.com/terraform-docs/terraform-docs/releases/download/v0.16.0/terraform-docs-v0.16.0-linux-amd64.tar.gz
@@ -51,17 +51,14 @@ custom_binaries:
   - name: vault
     url: https://releases.hashicorp.com/vault/1.6.2/vault_1.6.2_linux_amd64.zip
     type: archive
-  - name: hclq
-    url: https://github.com/mattolenik/hclq/releases/download/0.5.3/hclq-linux-amd64
-    type: binary
   - name: driftctl
     url: https://github.com/cloudskiff/driftctl/releases/latest/download/driftctl_linux_amd64
     type: binary
   - name: tflint
-    url: https://github.com/terraform-linters/tflint/releases/download/v0.33.1/tflint_linux_amd64.zip
+    url: https://github.com/terraform-linters/tflint/releases/download/v0.37.0/tflint_linux_amd64.zip
     type: archive
   - name: atlantis
-    url: https://github.com/runatlantis/atlantis/releases/download/v0.18.1/atlantis_linux_amd64.zip
+    url: https://github.com/runatlantis/atlantis/releases/download/v0.19.4/atlantis_linux_amd64.zip
     type: archive
 
 # Dotfiles
