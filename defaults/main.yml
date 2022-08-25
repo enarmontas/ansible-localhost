@@ -60,6 +60,9 @@ custom_binaries:
   - name: atlantis
     url: https://github.com/runatlantis/atlantis/releases/download/v0.19.4/atlantis_linux_amd64.zip
     type: archive
+  - name: cloud-nuke
+    url: https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.19.0/cloud-nuke_linux_amd64
+    type: binary
 
 # Dotfiles
 dotfiles_repo: "git@github.com:enarmontas/dotfiles.git"
