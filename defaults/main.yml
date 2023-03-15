@@ -8,6 +8,7 @@ homebrew_installed_packages:
   - curl
   - exiftool
   - git
+  - grep
   - imagemagick
   - jq
   - nmap
