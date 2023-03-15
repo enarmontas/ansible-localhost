@@ -29,6 +29,9 @@
 - include: terraform.yml
   tags: terraform
 
+- include: terragrunt.yml
+  tags: terraform, terragrunt
+
 - include: vagrant.yml
   tags: vagrant
 
