@@ -4,6 +4,7 @@ homebrew_build_dependencies:
   - openssl
 homebrew_cask_accept_external_apps: true
 homebrew_installed_packages:
+  - awscli
   - coreutils
   - curl
   - exiftool
@@ -13,6 +14,7 @@ homebrew_installed_packages:
   - jq
   - nmap
   - node
+  - saml2aws
   - sqlite
   - telnet
   - unison
