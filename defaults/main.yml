@@ -17,6 +17,7 @@ homebrew_installed_packages:
   - saml2aws
   - sqlite
   - telnet
+  - tfmigrate
   - unison
   - vim
   - wget
