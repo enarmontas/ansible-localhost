@@ -20,7 +20,6 @@ homebrew_installed_packages:
   - yarn
 homebrew_cask_apps:
   - iterm2
-  - virtualbox
 
 # Linux packages
 linux_installed_packages:
