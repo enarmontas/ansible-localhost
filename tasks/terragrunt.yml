@@ -15,18 +15,11 @@
     marker_end: END tgenv
   become: yes
 
-- name: Check installed Terragrunt versions
-  shell: "{{ tgenv_directory }}/bin/tgenv versions --bare"
-  register: grunts_installed
-  changed_when: false
-  failed_when: false
-
 - name: Install Terragrunt versions
   shell: "{{ tgenv_directory }}/bin/tgenv install {{ item }}"
   args:
     creates: "~/.tgenv/versions/{{ item }}"
   with_items: "{{ tgenv_grunts }}"
-  when: item not in grunts_installed.stdout_lines
 
 - name: Check if default Terragrunt version is {{ tgenv_default_grunt }}
   shell: "{{ tgenv_directory }}/bin/tgenv version-name | grep -Fx '{{ tgenv_default_grunt }}'"

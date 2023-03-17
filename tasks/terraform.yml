@@ -15,18 +15,11 @@
     marker_end: END TFENV
   become: yes
 
-- name: Check installed Terraform versions
-  shell: "{{ tfenv_directory }}/bin/tfenv versions --bare"
-  register: terraform_installed
-  changed_when: false
-  failed_when: false
-
 - name: Install Terraform versions
   shell: "{{ tfenv_directory }}/bin/tfenv install {{ item }}"
   args:
     creates: "~/.tfenv/versions/{{ item }}"
   with_items: "{{ tfenv_terraforms }}"
-  when: item not in terraform_installed.stdout_lines
 
 - name: Check if default Terraform version is {{ tfenv_default_terraform }}
   shell: "{{ tfenv_directory }}/bin/tfenv version-name | grep -Fx '{{ tfenv_default_terraform }}'"
