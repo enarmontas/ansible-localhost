@@ -24,6 +24,7 @@ homebrew_installed_packages:
   - yarn
 homebrew_cask_apps:
   - iterm2
+  - google-cloud-sdk
 
 # Linux packages
 linux_installed_packages:
