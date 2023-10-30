@@ -10,10 +10,13 @@ homebrew_installed_packages:
   - exiftool
   - git
   - grep
+  - hcloud
   - imagemagick
   - jq
+  - kubectl
   - nmap
   - node
+  - packer
   - saml2aws
   - sqlite
   - telnet
