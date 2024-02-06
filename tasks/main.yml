@@ -1,42 +1,42 @@
 ---
-- include: homebrew.yml
+- import_tasks: homebrew.yml
   tags: homebrew, brew
 
-- include: packages.yml
+- import_tasks: packages.yml
   when: ansible_facts['os_family'] == "RedHat"
 
-- include: binaries.yml
+- import_tasks: binaries.yml
   tags: binaries, binary
 
-- include: zsh.yml
+- import_tasks: zsh.yml
   tags: zsh
 
-- include: vim.yml
+- import_tasks: vim.yml
   tags: vim
 
-- include: dependencies.yml
+- import_tasks: dependencies.yml
   tags: ruby, python, golang, terraform, vagrant, docker
 
-- include: ruby.yml
+- import_tasks: ruby.yml
   tags: ruby
 
-- include: python.yml
+- import_tasks: python.yml
   tags: python
 
-- include: golang.yml
+- import_tasks: golang.yml
   tags: golang
 
-- include: terraform.yml
+- import_tasks: terraform.yml
   tags: terraform
 
-- include: terragrunt.yml
+- import_tasks: terragrunt.yml
   tags: terraform, terragrunt
 
-- include: vagrant.yml
+- import_tasks: vagrant.yml
   tags: vagrant
 
-- include: docker.yml
+- import_tasks: docker.yml
   tags: docker
 
-- include: vscode.yml
+- import_tasks: vscode.yml
   tags: vscode
