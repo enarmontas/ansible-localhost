@@ -139,13 +139,15 @@ pyenv_directory: ~/.pyenv
 pyenv_version: master
 pyenv_pythons:
   - 3.12.1
-pyenv_default_python: 3.12.1
+  - 3.10.11
+pyenv_default_python: 3.10.11
 pyenv_default_packages:
   - pip
   - pytest
   - virtualenv
   - docker
   - boto3
+  - ansible
 pyenv_plugins:
   - name: pyenv-virtualenv
     repo: https://github.com/pyenv/pyenv-virtualenv.git
