@@ -138,9 +138,10 @@ pyenv_repository: https://github.com/pyenv/pyenv.git
 pyenv_directory: ~/.pyenv
 pyenv_version: master
 pyenv_pythons:
-  - 3.9.6
-pyenv_default_python: 3.9.6
+  - 3.12.1
+pyenv_default_python: 3.12.1
 pyenv_default_packages:
+  - pip
   - pytest
   - virtualenv
   - docker
