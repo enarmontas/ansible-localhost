@@ -4,30 +4,50 @@ homebrew_build_dependencies:
   - openssl
 homebrew_cask_accept_external_apps: true
 homebrew_installed_packages:
-  - awscli
-  - coreutils
-  - curl
-  - exiftool
-  - git
-  - grep
-  - hcloud
-  - imagemagick
-  - jq
-  - kubectl
-  - nmap
-  - node
-  - packer
-  - saml2aws
-  - sqlite
-  - telnet
-  - tfmigrate
-  - unison
-  - vim
-  - wget
-  - yarn
+    - autoconf
+    - awscli
+    - bash
+    - binutils
+    - coreutils
+    - curl
+    - diffutils
+    - exiftool
+    - findutils
+    - git
+    - gnu-indent
+    - gnu-sed
+    - gnu-tar
+    - gnu-which
+    - grep
+    - gzip
+    - hcloud
+    - imagemagick
+    - jq
+    - kubectl
+    - less
+    - make
+    - nano
+    - nmap
+    - node
+    - packer
+    - saml2aws
+    - screen
+    - sqlite
+    - telnet
+    - tfmigrate
+    - unison
+    - vim
+    - watch
+    - wdiff
+    - wget
+    - yarn
+    - zip
+
 homebrew_cask_apps:
   - iterm2
   - google-cloud-sdk
+
+homebrew_taps: []
 
 # Linux packages
 linux_installed_packages:
