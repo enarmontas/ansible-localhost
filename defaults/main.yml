@@ -44,7 +44,6 @@ homebrew_installed_packages:
     - zip
 
 homebrew_cask_apps:
-  - iterm2
   - google-cloud-sdk
   - ghostty
 
