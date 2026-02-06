@@ -20,6 +20,7 @@ homebrew_installed_packages:
     - gnu-tar
     - gnu-which
     - go
+    - gh
     - grep
     - gzip
     - hcloud

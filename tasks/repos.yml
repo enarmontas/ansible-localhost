@@ -1,0 +1,16 @@
+---
+- name: Create ~/code directory
+  file:
+    path: ~/code
+    state: directory
+
+- name: List owned repos
+  command: gh repo list --source --limit 1000 --json nameWithOwner
+  register: gh_repos
+  changed_when: false
+
+- name: Clone repos
+  command:
+    cmd: gh repo clone "{{ item }}" "{{ '~/code/' + (item | split('/') | last) }}"
+    creates: "{{ '~/code/' + (item | split('/') | last) }}"
+  loop: "{{ (gh_repos.stdout | from_json) | map(attribute='nameWithOwner') }}"

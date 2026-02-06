@@ -13,3 +13,6 @@
 
 - import_tasks: binaries.yml
   tags: binaries
+
+- import_tasks: repos.yml
+  tags: repos
