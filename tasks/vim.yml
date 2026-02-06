@@ -13,6 +13,7 @@
   stat:
     path: "{{ vim_plugin_file }}"
     checksum_algorithm: sha256
+    get_checksum: true
   register: plugs_file
 
 - name: Check last installed checksum
@@ -23,10 +24,10 @@
 
 - name: Install Vim plugins
   shell: vim -u {{ vim_plugin_file }} +PlugInstall +qall
-  when: last_checksum.failed or (last_checksum.content | b64decode | trim) != plugs_file.stat.checksum
+  when: plugs_file.stat.exists and (last_checksum.failed or (last_checksum.content | b64decode | trim) != (plugs_file.stat.checksum | default('')))
 
 - name: Save plugs checksum
   copy:
-    content: "{{ plugs_file.stat.checksum }}"
+    content: "{{ plugs_file.stat.checksum | default('') }}"
     dest: ~/.vim/.plugs_checksum
-  when: last_checksum.failed or (last_checksum.content | b64decode | trim) != plugs_file.stat.checksum
+  when: plugs_file.stat.exists and (last_checksum.failed or (last_checksum.content | b64decode | trim) != (plugs_file.stat.checksum | default('')))
