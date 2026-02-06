@@ -9,11 +9,24 @@
     url: "{{ vim_plugin_manager_url }}"
     dest: "{{ vim_plugin_manager_directory }}"
 
-- name: Check if Vim plugins are installed
+- name: Get plugs.vim checksum
   stat:
-    path: ~/.vim/plugged
-  register: vim_plugged
+    path: "{{ vim_plugin_file }}"
+    checksum_algorithm: sha256
+  register: plugs_file
+
+- name: Check last installed checksum
+  slurp:
+    src: ~/.vim/.plugs_checksum
+  register: last_checksum
+  ignore_errors: true
 
 - name: Install Vim plugins
   shell: vim -u {{ vim_plugin_file }} +PlugInstall +qall
-  when: not vim_plugged.stat.exists
+  when: last_checksum.failed or (last_checksum.content | b64decode | trim) != plugs_file.stat.checksum
+
+- name: Save plugs checksum
+  copy:
+    content: "{{ plugs_file.stat.checksum }}"
+    dest: ~/.vim/.plugs_checksum
+  when: last_checksum.failed or (last_checksum.content | b64decode | trim) != plugs_file.stat.checksum
