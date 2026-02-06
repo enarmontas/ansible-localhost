@@ -9,6 +9,11 @@
     url: "{{ vim_plugin_manager_url }}"
     dest: "{{ vim_plugin_manager_directory }}"
 
-- name: Intall Vim plugins
+- name: Check if Vim plugins are installed
+  stat:
+    path: ~/.vim/plugged
+  register: vim_plugged
+
+- name: Install Vim plugins
   shell: vim -u {{ vim_plugin_file }} +PlugInstall +qall
-  changed_when: false
+  when: not vim_plugged.stat.exists
