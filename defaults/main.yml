@@ -49,28 +49,11 @@ homebrew_installed_packages:
     - zip
 
 homebrew_cask_apps:
-  - google-cloud-sdk
   - ghostty
+  - google-cloud-sdk
+  - visual-studio-code
 
 homebrew_taps: []
-
-# Linux packages
-linux_installed_packages:
-  - git-all
-linux_build_dependencies:
-  - cmake
-  - gcc
-  - gcc-c++
-  - libconfig-devel
-  - libevdev-devel
-  - libffi-devel
-  - libyaml-devel
-  - openssl-devel
-  - readline-devel
-  - systemd-devel
-  - zlib-devel
-fedora_build_dependencies:
-  - dnf-plugins-core
 
 # Custom binaries
 custom_binaries: []
@@ -102,91 +85,3 @@ vim_autoload_directory: ~/.vim/autoload
 vim_plugin_file: ~/.plugs.vim
 vim_plugin_manager_url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim_plugin_manager_directory: ~/.vim/autoload/plug.vim
-
-# Ruby
-rbenv_repository: https://github.com/rbenv/rbenv.git
-rbenv_directory: ~/.rbenv
-rbenv_version: master
-rbenv_rubies:
-  - 3.0.1
-  - 2.7.2
-rbenv_default_ruby: 3.0.1
-rbenv_default_gems:
-  - bundler
-  - jekyll
-  - rails
-  - rake
-  - rubocop
-  - sinatra
-rbenv_plugins:
-  - name: rbenv-vars
-    repo: https://github.com/rbenv/rbenv-vars.git
-    version: master
-  - name: ruby-build
-    repo: https://github.com/rbenv/ruby-build.git
-    version: master
-  - name: rbenv-default-gems
-    repo: https://github.com/rbenv/rbenv-default-gems.git
-    version: master
-  - name: rbenv-installer
-    repo: https://github.com/rbenv/rbenv-installer.git
-    version: main
-  - name: rbenv-update
-    repo: https://github.com/rkh/rbenv-update.git
-    version: master
-  - name: rbenv-use
-    repo: https://github.com/rkh/rbenv-use.git
-    version: master
-
-# Python
-pyenv_repository: https://github.com/pyenv/pyenv.git
-pyenv_directory: ~/.pyenv
-pyenv_version: master
-pyenv_pythons:
-  - 3.12.1
-  - 3.10.11
-pyenv_default_python: 3.10.11
-pyenv_default_packages:
-  - pip
-  - pytest
-  - virtualenv
-  - docker
-  - boto3
-  - ansible
-pyenv_plugins:
-  - name: pyenv-virtualenv
-    repo: https://github.com/pyenv/pyenv-virtualenv.git
-    version: master
-  - name: pyenv-default-packages
-    repo: https://github.com/jawshooah/pyenv-default-packages.git
-    version: master
-
-# Go
-goenv_repository: https://github.com/syndbg/goenv.git
-goenv_directory: ~/.goenv
-goenv_version: master
-goenv_gos:
-  - 1.20.1
-goenv_default_go: 1.20.1
-
-# Terraform
-tfenv_repository: https://github.com/tfutils/tfenv.git
-tfenv_directory: ~/.tfenv
-tfenv_version: master
-tfenv_terraforms:
-  - 1.0.11
-  - 1.1.9
-  - 1.2.9
-  - 1.3.9
-  - 1.4.0
-tfenv_default_terraform: 1.3.9
-
-# Terragrunt
-tgenv_repository: https://github.com/tgenv/tgenv.git
-tgenv_directory: ~/.tgenv
-tgenv_version: master
-tgenv_grunts:
-  - 0.53.0
-  - 0.43.3
-  - 0.44.5
-tgenv_default_grunt: 0.53.0

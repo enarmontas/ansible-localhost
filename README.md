@@ -1,12 +1,11 @@
 # Ansible Localhost
 
-Ansible playbook for setting up my local development environment on macOS and Fedora.
+Ansible playbook for setting up my local development environment on macOS.
 Here's what it does:
 - Setup my Dotfiles / [enarmontas/dotfiles](https://github.com/enarmontas/dotfiles)
 - Install and configure Zsh + Oh My Zsh
 - Install and configure Vim
-- Install Homebrew
-- Install Docker, Vagrant
+- Install Homebrew and packages
 
 ## Usage
 1. Fork this repository and modify to match your desired configuration.

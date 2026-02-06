@@ -2,11 +2,8 @@
 - import_tasks: homebrew.yml
   tags: homebrew, brew
 
-- import_tasks: packages.yml
-  when: ansible_facts['os_family'] == "RedHat"
-
-- import_tasks: binaries.yml
-  tags: binaries, binary
+- import_tasks: dependencies.yml
+  tags: homebrew
 
 - import_tasks: zsh.yml
   tags: zsh
@@ -14,14 +11,5 @@
 - import_tasks: vim.yml
   tags: vim
 
-- import_tasks: dependencies.yml
-  tags: ruby, python, golang, terraform, vagrant, docker
-
-- import_tasks: vagrant.yml
-  tags: vagrant
-
-- import_tasks: docker.yml
-  tags: docker
-
-- import_tasks: vscode.yml
-  tags: vscode
+- import_tasks: binaries.yml
+  tags: binaries

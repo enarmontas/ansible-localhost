@@ -1,11 +1,4 @@
 ---
-- name: Install ZSH for Linux
-  package:
-    name: zsh
-    state: present
-  become: true
-  when: ansible_facts['os_family'] == "RedHat"
-
 - name: Install ZSH for macOS
   homebrew:
     name: zsh
