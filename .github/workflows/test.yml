@@ -18,8 +18,13 @@ jobs:
       - name: Install Ansible requirements
         run: ansible-galaxy install -r requirements.yml
 
-      - name: Run playbook
+      - name: Fix Homebrew permissions
         run: |
           sudo chown -R $(whoami) /opt/homebrew
+          sudo mkdir -p /opt/homebrew/Caskroom
+          sudo chown -R $(whoami) /opt/homebrew/Caskroom
+
+      - name: Run playbook
+        run: |
           rm -f ~/.gitconfig
           ansible-playbook setup.yml --become -e "dotfiles_repo=https://github.com/enarmontas/dotfiles.git"
