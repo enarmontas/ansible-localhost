@@ -17,21 +17,6 @@
 - import_tasks: dependencies.yml
   tags: ruby, python, golang, terraform, vagrant, docker
 
-- import_tasks: ruby.yml
-  tags: ruby
-
-- import_tasks: python.yml
-  tags: python
-
-- import_tasks: golang.yml
-  tags: golang
-
-- import_tasks: terraform.yml
-  tags: terraform
-
-- import_tasks: terragrunt.yml
-  tags: terraform, terragrunt
-
 - import_tasks: vagrant.yml
   tags: vagrant
 

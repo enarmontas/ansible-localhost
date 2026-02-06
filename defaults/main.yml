@@ -18,6 +18,7 @@ homebrew_installed_packages:
     - gnu-sed
     - gnu-tar
     - gnu-which
+    - go
     - grep
     - gzip
     - hcloud
@@ -30,10 +31,14 @@ homebrew_installed_packages:
     - nmap
     - node
     - packer
+    - python
+    - ruby
     - saml2aws
     - screen
     - sqlite
     - telnet
+    - terraform
+    - terragrunt
     - tfmigrate
     - unison
     - vim
