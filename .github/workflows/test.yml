@@ -12,9 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fix Homebrew permissions
-        run: sudo chown -R $(whoami) /opt/homebrew
-
       - name: Install Ansible
         run: brew install ansible
 
@@ -22,4 +19,6 @@ jobs:
         run: ansible-galaxy install -r requirements.yml
 
       - name: Run playbook
-        run: ansible-playbook setup.yml -e "dotfiles_repo=https://github.com/enarmontas/dotfiles.git"
+        run: |
+          sudo chown -R $(whoami) /opt/homebrew
+          ansible-playbook setup.yml --become -e "dotfiles_repo=https://github.com/enarmontas/dotfiles.git"
