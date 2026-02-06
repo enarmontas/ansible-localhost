@@ -21,4 +21,5 @@ jobs:
       - name: Run playbook
         run: |
           sudo chown -R $(whoami) /opt/homebrew
+          rm -f ~/.gitconfig
           ansible-playbook setup.yml --become -e "dotfiles_repo=https://github.com/enarmontas/dotfiles.git"
