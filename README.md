@@ -6,7 +6,6 @@ Here's what it does:
 - Install and configure Zsh + Oh My Zsh
 - Install and configure Vim
 - Install Homebrew
-- Install Go, Python, Ruby, Terraform and manage them in `rbenv` style
 - Install Docker, Vagrant
 
 ## Usage
@@ -29,8 +28,3 @@ Here's what it does:
    $ ansible-playbook setup.yml --ask-become-pass
    ```
    Run tasks with specific tag: `-t <tag>`
-
-## To Do
-- Remove old `rbenv`, `pyenv`, `tfenv` and `goenv` versions
-- Install Atom for macOS
-- Cofigure Terminus with Ansible
