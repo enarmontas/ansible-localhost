@@ -39,6 +39,6 @@
 
 - name: Set default shell to zsh for current user
   user:
-    name: "{{ ansible_env.USER }}"
+    name: "{{ ansible_facts['env']['USER'] }}"
     shell: "{{ zsh_path.stdout }}"
   become: true
