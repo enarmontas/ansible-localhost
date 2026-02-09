@@ -5,14 +5,20 @@ homebrew_build_dependencies:
 homebrew_cask_accept_external_apps: true
 homebrew_installed_packages:
     - autoconf
+    - aws-sso-cli
     - awscli
     - bash
     - binutils
+    - cloud-nuke
+    - consul
     - coreutils
     - curl
     - diffutils
     - exiftool
+    - ffmpeg
     - findutils
+    - gemini-cli
+    - gh
     - git
     - git-filter-repo
     - gnu-indent
@@ -20,42 +26,60 @@ homebrew_installed_packages:
     - gnu-tar
     - gnu-which
     - go
-    - gh
     - grep
     - gzip
+    - hadolint
     - hcloud
+    - helm
     - imagemagick
     - jq
-    - kubectl
+    - kubernetes-cli
     - less
+    - mage
     - make
+    - mise
+    - mysql
     - nano
     - nmap
     - node
     - packer
+    - perl
+    - pre-commit
+    - pyenv
     - python
+    - qemu
     - ruby
     - saml2aws
     - screen
     - sqlite
     - telnet
     - terraform
+    - terraform-docs
     - terragrunt
+    - tflint
     - tfmigrate
+    - tgenv
     - unison
     - vim
+    - virtualenv
     - watch
     - wdiff
     - wget
     - yarn
+    - yt-dlp
     - zip
 
 homebrew_cask_apps:
+  - 1password-cli
+  - claude
+  - gcloud-cli
   - ghostty
   - google-cloud-sdk
+  - nosleep
   - visual-studio-code
 
-homebrew_taps: []
+homebrew_taps:
+  - hashicorp/tap
 
 # Custom binaries
 custom_binaries: []
